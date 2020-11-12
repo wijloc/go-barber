@@ -27,6 +27,7 @@
       }
     ],
     "prettier/prettier": "error",
+    "class-methods-use-this": "off",
     "no-console": "off"
   },
   "settings": {
