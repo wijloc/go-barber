@@ -13,13 +13,10 @@ usersRouter.post('/', async (request, response) => {
 
     const user = await createUser.execute({ name, email, password });
 
-    type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-    type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
-
-    type UserWithoutPassword = PartialBy<User, 'password'>;
-
-    const userWithoutPassword: UserWithoutPassword = { ...user };
-    delete userWithoutPassword.password;
+    const userWithoutPassword = {
+      ...user,
+      password: undefined,
+    };
 
     return response.send(userWithoutPassword);
   } catch (err) {
