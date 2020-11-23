@@ -13,23 +13,19 @@ const usersRouter = Router();
 const upload = multer(uploadConfig);
 
 usersRouter.post('/', async (request, response) => {
-  try {
-    const { name, email, password } = request.body;
+  const { name, email, password } = request.body;
 
-    const createUser = new CreateUserService();
+  const createUser = new CreateUserService();
 
-    const user = await createUser.execute({ name, email, password });
+  const user = await createUser.execute({ name, email, password });
 
-    const userWithoutPassword = {
-      ...user,
-      password: undefined,
-    };
-    delete userWithoutPassword.password;
+  const userWithoutPassword = {
+    ...user,
+    password: undefined,
+  };
+  delete userWithoutPassword.password;
 
-    return response.send(userWithoutPassword);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.send(userWithoutPassword);
 });
 
 usersRouter.patch(
@@ -37,23 +33,19 @@ usersRouter.patch(
   ensureAuthenticated,
   upload.single('avatar'),
   async (request, response) => {
-    try {
-      const updateUserAvatar = new UpdateUserAvatarService();
+    const updateUserAvatar = new UpdateUserAvatarService();
 
-      const user = await updateUserAvatar.execute({
-        user_id: request.user.id,
-        avatarFileName: request.file.filename,
-      });
+    const user = await updateUserAvatar.execute({
+      user_id: request.user.id,
+      avatarFileName: request.file.filename,
+    });
 
-      const userWithoutPassword = {
-        ...user,
-        password: undefined,
-      };
+    const userWithoutPassword = {
+      ...user,
+      password: undefined,
+    };
 
-      return response.json(userWithoutPassword);
-    } catch (err) {
-      return response.status(400).json({ error: err.message });
-    }
+    return response.json(userWithoutPassword);
   },
 );
 
