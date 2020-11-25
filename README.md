@@ -1,3 +1,3 @@
 # GoBarber
 
-This repository is about the main project of Gostack.
+First project Node in GoStack
