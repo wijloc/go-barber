@@ -19,7 +19,7 @@ sessionsRouter.post('/', async (request, response) => {
     password: undefined,
   };
 
-  return response.send({ userWithoutPassword, token });
+  return response.send({ user: userWithoutPassword, token });
 });
 
 export default sessionsRouter;
