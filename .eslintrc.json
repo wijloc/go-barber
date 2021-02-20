@@ -22,6 +22,14 @@
     "@typescript-eslint/no-unused-vars":["error", {
       "argsIgnorePattern": "_"
     }],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "prefix": ["I"],
+        "format": ["PascalCase"]
+      }
+    ],
      "import/extensions": [
       "error",
       "ignorePackages",
@@ -34,7 +42,8 @@
     "no-console": "off",
     "import/prefer-default-export": "off",
     "camelcase": "off",
-    "@typescript-eslint/ban-types": "off"
+    "@typescript-eslint/ban-types": "off",
+    "no-useless-constructor": "off"
   },
   "settings": {
     "import/resolver": {
